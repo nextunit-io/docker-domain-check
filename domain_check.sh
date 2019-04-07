@@ -23,7 +23,7 @@ for domain in $DOMAINS_TO_CHECK; do
     fi
 done
 
-if [ "${#AVAILABLE_DOMAINS[@]}" -gt "0" ]; then
+if [ -n "$AVAILABLE_DOMAINS" ]; then
     echo "Notification will be sent. $AVAILABLE_DOMAINS"
     curl -s -X POST -H 'Content-type: application/json' --data "{\"text\":\"Domain notification - The following domains are available: $AVAILABLE_DOMAINS\"}" $SLACK_NOTIFICATION_ENDPOINT > /dev/null
 fi
